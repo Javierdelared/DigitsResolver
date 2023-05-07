@@ -1,12 +1,14 @@
 package main.operations;
 
-import java.util.List;
-
 public class Mul implements Operator {
+
+    public static final Mul INSTANCE = new Mul();
+    private Mul() {}
+    public static Mul getInstance() {
+        return INSTANCE;
+    }
     @Override
-    public Integer operate(Integer num1, Integer num2, List<HistoricOperation> historicOperations) {
-        Integer result = num1 * num2;
-        historicOperations.add(new HistoricOperation(num1, num2, result, this));
+    public Integer operate(Integer num1, Integer num2) {
         return num1 * num2;
     }
 

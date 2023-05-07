@@ -10,11 +10,19 @@ public class Main {
 
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
+
+        final List<Integer> numbers = List.of(7,9,13,19,20,23);
+        final Integer target = 483;
+        CombinatorRecord combinatorRecord = new CombinatorRecord.Builder(numbers, target).build();
+
         Instant start = Instant.now();
-        final List<Integer> numbers = List.of(4,5,7,11,15,20);
-        final Integer target = 321;
-        Combiner combiner = new Combiner.Builder(numbers, target).build();
-        combiner.logResult();
+        Solution solution = CombinatorUtils.calculateResults(combinatorRecord, false);
+        CombinatorUtils.logSolution(solution);
+        LOG.info("Time elapsed: {} ms", Instant.now().toEpochMilli() - start.toEpochMilli());
+
+        start = Instant.now();
+        solution = CombinatorUtils.calculateResults(combinatorRecord, true);
+        CombinatorUtils.logSolution(solution);
         LOG.info("Time elapsed: {} ms", Instant.now().toEpochMilli() - start.toEpochMilli());
     }
 }

@@ -1,21 +1,22 @@
 package main.operations;
 
-import java.util.List;
-
 public class Div implements Operator {
+
+    public static final Div INSTANCE = new Div();
+    private Div() {}
+    public static Div getInstance() {
+        return INSTANCE;
+    }
     @Override
-    public Integer operate(Integer num1, Integer num2, List<HistoricOperation> historicOperations) {
+    public Integer operate(Integer num1, Integer num2) {
         if (num1 < num2) {
             // Swap
             num1 = num1 ^ num2 ^ (num2 = num1);
         }
         if (isInValidDivision(num1, num2)) {
-            // Division impossible
             return null;
         }
-        int result = num1 / num2;
-        historicOperations.add(new HistoricOperation(num1, num2, result, this));
-        return result;
+        return  num1 / num2;
     }
 
     private static boolean isInValidDivision(Integer num1, Integer num2) {

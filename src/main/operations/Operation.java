@@ -1,6 +1,6 @@
 package main.operations;
 
-public class HistoricOperation {
+public class Operation {
 
     private final Integer num1;
     private final Integer num2;
@@ -19,10 +19,10 @@ public class HistoricOperation {
         return result;
     }
 
-    public HistoricOperation(Integer num1, Integer num2, Integer result, Operator operator) {
+    public Operation(Integer num1, Integer num2, Operator operator) {
         this.num1 = num1;
         this.num2 = num2;
-        this.result = result;
+        this.result = operator.operate(num1, num2);
         this.operator = operator;
     }
 

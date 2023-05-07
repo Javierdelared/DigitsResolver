@@ -1,13 +1,16 @@
 package main.operations;
 
-import java.util.List;
-
 public class Sum implements Operator {
+
+    public static final Sum INSTANCE = new Sum();
+    private Sum() {}
+
+    public static Sum getInstance() {
+        return INSTANCE;
+    }
     @Override
-    public Integer operate(Integer num1, Integer num2, List<HistoricOperation> historicOperations) {
-        Integer result = num1 + num2;
-        historicOperations.add(new HistoricOperation(num1, num2, result, this));
-        return result;
+    public Integer operate(Integer num1, Integer num2) {
+        return num1 + num2;
     }
 
     @Override
