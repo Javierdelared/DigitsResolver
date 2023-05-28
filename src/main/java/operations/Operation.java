@@ -1,4 +1,4 @@
-package main.operations;
+package operations;
 
 public class Operation {
 

@@ -1,6 +1,4 @@
-package main;
-
-import main.operations.Operation;
+import operations.Operation;
 
 import java.util.ArrayList;
 import java.util.List;

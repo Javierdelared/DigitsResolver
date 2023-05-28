@@ -1,6 +1,4 @@
-package main;
-
-import main.operations.*;
+import operations.*;
 
 import java.util.*;
 

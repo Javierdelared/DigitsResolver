@@ -1,5 +1,3 @@
-package main;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,8 +9,8 @@ public class Main {
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
 
-        final List<Integer> numbers = List.of(7,9,13,19,20,23);
-        final Integer target = 483;
+        final List<Integer> numbers = List.of(5,7,8,9,15,20);
+        final Integer target = 341;
         CombinatorRecord combinatorRecord = new CombinatorRecord.Builder(numbers, target).build();
 
         Instant start = Instant.now();

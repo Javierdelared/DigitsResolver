@@ -1,8 +1,6 @@
-package main;
-
-import main.operations.HistoricOperations;
-import main.operations.Operation;
-import main.operations.Operator;
+import operations.HistoricOperations;
+import operations.Operation;
+import operations.Operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
