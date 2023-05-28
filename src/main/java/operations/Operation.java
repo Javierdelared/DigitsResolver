@@ -28,6 +28,11 @@ public class Operation {
 
     @Override
     public String toString() {
-        return num1 + " " + operator.getOperator() + " " + num2 + " = " + result;
+        int nHigh = num1;
+        int nLow = num2;
+        if (num1 < num2) {
+            nHigh = nHigh ^ nLow ^ (nLow = nHigh);
+        }
+        return nHigh + " " + operator.getOperator() + " " + nLow + " = " + result;
     }
 }

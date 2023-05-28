@@ -3,6 +3,7 @@ package operations;
 public class Mul implements Operator {
 
     public static final Mul INSTANCE = new Mul();
+    public static final String OPERATOR = "*";
     private Mul() {}
     public static Mul getInstance() {
         return INSTANCE;
@@ -14,6 +15,6 @@ public class Mul implements Operator {
 
     @Override
     public String getOperator() {
-        return "*";
+        return OPERATOR;
     }
 }

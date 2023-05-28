@@ -3,6 +3,7 @@ package operations;
 public class Sum implements Operator {
 
     public static final Sum INSTANCE = new Sum();
+    public static final String OPERATOR = "+";
     private Sum() {}
 
     public static Sum getInstance() {
@@ -15,6 +16,6 @@ public class Sum implements Operator {
 
     @Override
     public String getOperator() {
-        return "+";
+        return OPERATOR;
     }
 }

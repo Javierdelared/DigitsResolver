@@ -3,6 +3,7 @@ package operations;
 public class Div implements Operator {
 
     public static final Div INSTANCE = new Div();
+    public static final String OPERATOR = "/";
     private Div() {}
     public static Div getInstance() {
         return INSTANCE;
@@ -20,11 +21,11 @@ public class Div implements Operator {
     }
 
     private static boolean isInValidDivision(Integer num1, Integer num2) {
-        return num1 == 0 || num2 == 0 || (num1 % num2 != 0 && num2 % num1 != 0);
+        return num2 == 0 || num1 % num2 != 0;
     }
 
     @Override
     public String getOperator() {
-        return "/";
+        return OPERATOR;
     }
 }
