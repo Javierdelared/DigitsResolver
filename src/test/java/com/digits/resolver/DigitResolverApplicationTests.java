@@ -9,4 +9,9 @@ class DigitResolverApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void mainTest() {
+		DigitResolverApplication.main(new String[] {});
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.digits.resolver;
+package com.digits.resolver.model;
 
 import com.digits.resolver.operations.Operation;
 

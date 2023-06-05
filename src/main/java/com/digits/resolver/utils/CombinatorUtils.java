@@ -1,13 +1,20 @@
-package com.digits.resolver;
+package com.digits.resolver.utils;
 
+import com.digits.resolver.exception.SolutionNotFoundException;
+import com.digits.resolver.exception.TrivialSolutionException;
+import com.digits.resolver.model.Solution;
+import com.digits.resolver.model.Combination;
+import com.digits.resolver.model.CombinatorRecord;
 import com.digits.resolver.operations.HistoricOperations;
 import com.digits.resolver.operations.Operation;
 import com.digits.resolver.operations.Operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class CombinatorUtils {
 
     /**
@@ -23,17 +30,19 @@ public class CombinatorUtils {
      *
      * @return Solution         : The solution.
      */
-    public static Solution calculateResults(CombinatorRecord combinatorRecord, boolean firstHit) {
+    public Solution calculateResults(CombinatorRecord combinatorRecord, boolean firstHit) {
         if (combinatorRecord.numbers().contains(combinatorRecord.target())) {
             LOG.info("The target solution is already contained in the list of numbers");
-            return null;
+            throw new TrivialSolutionException();
         }
         HistoricOperations historicOperations = new HistoricOperations();
         searchHits(combinatorRecord.numbers(), combinatorRecord.target(), combinatorRecord.operators(),
                 historicOperations, firstHit);
         Solution solution = generateSolution(combinatorRecord, historicOperations, firstHit);
         if (solution.getBestCombinationSolution() == null) {
-            return null;
+            LOG.info("No solution found for numbers: [{}] and target: [{}]",
+                    combinatorRecord.numbers(), combinatorRecord.target());
+            throw new SolutionNotFoundException();
         }
         return solution;
     }
@@ -48,7 +57,7 @@ public class CombinatorUtils {
      *
      * @return boolean              : True if the target is found with the fie¡rst hit flag activated, false otherwise.
      */
-    private static boolean searchHits(List<Integer> numbers, Integer target, List<Operator> operators,
+    private boolean searchHits(List<Integer> numbers, Integer target, List<Operator> operators,
                                       HistoricOperations historicOperations, boolean firstHit) {
         for (int i = 0; i < numbers.size(); i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
@@ -79,7 +88,7 @@ public class CombinatorUtils {
      * @param result    : Result of the operation.
      * @return boolean  : True if the recursion can continue, false otherwise.
      */
-    private static boolean canContinueRecursion(List<Integer> numbers, Integer target, Integer result) {
+    private boolean canContinueRecursion(List<Integer> numbers, Integer target, Integer result) {
         return result != null && !Objects.equals(result, target) && numbers.size() > 2;
     }
 
@@ -92,7 +101,7 @@ public class CombinatorUtils {
      *
      * @return Solution             : The solution.
      */
-    private static Solution generateSolution(CombinatorRecord combinatorRecord, HistoricOperations historicOperations,
+    private Solution generateSolution(CombinatorRecord combinatorRecord, HistoricOperations historicOperations,
                                              boolean firstHit) {
         Solution solution = new Solution();
         for (List<Operation> operations : historicOperations.getHistoricOperationList()) {
@@ -118,7 +127,7 @@ public class CombinatorUtils {
      *
      * @return boolean          : True if the combination is valid, false otherwise.
      */
-    private static boolean populateCombination(Combination combination, List<Integer> numbersLeft,
+    private boolean populateCombination(Combination combination, List<Integer> numbersLeft,
                                                List<Operation> operationsLeft, Integer target) {
         Operation operation = operationsLeft.stream()
                 .filter(h -> Objects.equals(h.getResult(), target)).findFirst().orElse(null);
@@ -148,7 +157,7 @@ public class CombinatorUtils {
      *
      * @return List     : List of numbers updated.
      */
-    private static List<Integer> updateCombination(List<Integer> numbers, int i, int j, Integer result) {
+    private List<Integer> updateCombination(List<Integer> numbers, int i, int j, Integer result) {
         List<Integer> combinedNumbers = new ArrayList<>(numbers);
         combinedNumbers.remove(numbers.get(i));
         combinedNumbers.remove(numbers.get(j));
@@ -161,7 +170,7 @@ public class CombinatorUtils {
      *
      * @param solution  : Solution to log.
      */
-    public static void logSolution(Solution solution) {
+    public void logSolution(Solution solution) {
         if(solution == null) {
             LOG.warn("No solution found");
             return;

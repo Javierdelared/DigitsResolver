@@ -1,4 +1,4 @@
-package com.digits.resolver;
+package com.digits.resolver.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
