@@ -1,6 +1,8 @@
-import operations.HistoricOperations;
-import operations.Operation;
-import operations.Operator;
+package com.digits.resolver;
+
+import com.digits.resolver.operations.HistoricOperations;
+import com.digits.resolver.operations.Operation;
+import com.digits.resolver.operations.Operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +13,7 @@ public class CombinatorUtils {
     /**
      * Logger.
      */
-    private static final Logger LOG = LoggerFactory.getLogger(CombinatorRecord.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CombinatorUtils.class);
 
     /**
      * Method to calculate the solution from the combinator.

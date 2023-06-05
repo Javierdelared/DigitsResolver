@@ -1,4 +1,4 @@
-package operations;
+package com.digits.resolver.operations;
 
 public class Operation {
 

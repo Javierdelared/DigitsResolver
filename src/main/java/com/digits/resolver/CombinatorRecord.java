@@ -1,4 +1,6 @@
-import operations.*;
+package com.digits.resolver;
+
+import com.digits.resolver.operations.*;
 
 import java.util.*;
 

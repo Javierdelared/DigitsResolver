@@ -1,14 +1,16 @@
-import operations.*;
-import org.junit.Test;
+package com.digits.resolver;
+
+import com.digits.resolver.operations.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class CombinatorUtilsTest {
+@SpringBootTest
+class CombinatorUtilsTest {
     private static final int MIN_INT_NUMBER = 1;
     private static final int MAX_INT_NUMBER = 30;
 

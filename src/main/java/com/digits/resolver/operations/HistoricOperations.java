@@ -1,4 +1,4 @@
-package operations;
+package com.digits.resolver.operations;
 
 import java.util.ArrayList;
 import java.util.List;
